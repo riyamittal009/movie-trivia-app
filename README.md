@@ -47,7 +47,7 @@ createdb movie_trivia_app
 ### 3. Get OpenAI API Key
 
 - **Option A**: Get your own key from [OpenAI Platform](https://platform.openai.com/api-keys)
-- **Option B**: Contact the project maintainer for a shared key
+- **Option B**: Contact me for a shared key
 
 ### 4. Environment Variables
 
@@ -68,7 +68,7 @@ OPENAI_API_KEY="your-openai-api-key"
 **Important**:
 
 - Replace `your-random-secret-key-here` with a random string
-- Use your actual OpenAI API key (or contact maintainer for shared key)
+- Use your actual OpenAI API key (or contact me for shared key)
 
 ### 5. Database Setup
 
@@ -144,12 +144,4 @@ prisma/
 
 - Verify API key is valid
 - Check OpenAI account has credits
-- Contact maintainer for shared key if needed
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test locally
-5. Submit a pull request
+- Contact me for shared key if needed
