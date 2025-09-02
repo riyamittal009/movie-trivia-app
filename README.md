@@ -54,8 +54,8 @@ createdb movie_trivia_app
 Create a `.env` file in the project root:
 
 ```env
-# Database
-DATABASE_URL="postgresql://postgres:password@localhost:5432/movie_trivia_app"
+# Database (adjust username as needed)
+DATABASE_URL="postgresql://your_username@localhost:5432/movie_trivia_app"
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
@@ -68,6 +68,7 @@ OPENAI_API_KEY="your-openai-api-key"
 **Important**:
 
 - Replace `your-random-secret-key-here` with a random string
+- Replace `your_username` with your system username (or use `postgres` if you set up a postgres user)
 - Use your actual OpenAI API key (or contact me for shared key)
 
 ### 5. Database Setup
