@@ -1,36 +1,155 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Movie Trivia App
 
-## Getting Started
+A Next.js web application that generates interesting movie facts using AI. Users sign in with Google, select their favorite movie, and get fascinating trivia facts powered by OpenAI.
 
-First, run the development server:
+## Features
+
+- 🔐 Google OAuth authentication
+- 🎬 Favorite movie selection and storage
+- 🤖 AI-generated movie facts using OpenAI
+- 💾 PostgreSQL database with Prisma ORM
+- 🔄 New facts on page refresh
+- 📱 Responsive design
+
+## Prerequisites
+
+Before running this project locally, you'll need:
+
+- **Node.js** (v18 or higher)
+- **PostgreSQL** (v17 or higher)
+- **OpenAI API Key**
+
+## Local Development Setup
+
+### 1. Clone and Install Dependencies
+
+```bash
+git clone <repository-url>
+cd movie-trivia-app
+npm install
+```
+
+### 2. Set Up PostgreSQL Database Locally
+
+**Recommended: Using Homebrew (macOS)**
+
+```bash
+# Install PostgreSQL
+brew install postgresql@17
+
+# Start PostgreSQL service
+brew services start postgresql@17
+
+# Create database
+createdb movie_trivia_app
+```
+
+### 3. Get OpenAI API Key
+
+- **Option A**: Get your own key from [OpenAI Platform](https://platform.openai.com/api-keys)
+- **Option B**: Contact the project maintainer for a shared key
+
+### 4. Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+# Database
+DATABASE_URL="postgresql://postgres:password@localhost:5432/movie_trivia_app"
+
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-random-secret-key-here"
+
+# OpenAI
+OPENAI_API_KEY="your-openai-api-key"
+```
+
+**Important**:
+
+- Replace `your-random-secret-key-here` with a random string
+- Use your actual OpenAI API key (or contact maintainer for shared key)
+
+### 5. Database Setup
+
+```bash
+# Generate Prisma client
+npx prisma generate
+
+# Run database migrations
+npx prisma migrate dev --name init
+
+# (Optional) View database in Prisma Studio
+npx prisma studio
+```
+
+### 6. Run the Application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Sign In**: Click "Sign in with Google" to authenticate
+2. **First Time**: Select your favorite movie and save it
+3. **Returning Users**: Automatically see facts about your saved movie
+4. **Get New Facts**: Refresh the page to get new AI-generated facts
+5. **Sign Out**: Use the logout button to sign out
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/[...nextauth]/    # NextAuth configuration
+│   │   ├── movie-fact/            # OpenAI movie facts API
+│   │   ├── save-movie/            # Save user's favorite movie
+│   │   └── get-movie/             # Retrieve user's favorite movie
+│   ├── login/                     # Login page
+│   ├── newuser/                   # First-time user movie selection
+│   └── page.tsx                   # Main dashboard
+├── lib/
+│   └── prisma.ts                  # Prisma client configuration
+└── middleware.ts                  # Authentication middleware
+prisma/
+└── schema.prisma                  # Database schema
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS
+- **Authentication**: NextAuth.js with Google OAuth
+- **Database**: PostgreSQL with Prisma ORM
+- **AI**: OpenAI GPT-3.5 Turbo
+- **Deployment**: Vercel-ready
 
-## Deploy on Vercel
+## Troubleshooting
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Database Connection Issues:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Ensure PostgreSQL is running
+- Check DATABASE_URL format
+- Verify database exists
+
+**Authentication Issues:**
+
+- Ensure NEXTAUTH_SECRET is set
+- Google OAuth is preconfigured in the app
+
+**OpenAI API Issues:**
+
+- Verify API key is valid
+- Check OpenAI account has credits
+- Contact maintainer for shared key if needed
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally
+5. Submit a pull request

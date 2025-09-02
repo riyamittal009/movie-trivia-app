@@ -5,8 +5,9 @@ import { prisma } from "@/lib/prisma";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId:
+        "940802420753-65hkgm1t0okgsoufbroru4ajup3srmol.apps.googleusercontent.com",
+      clientSecret: "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",
       authorization: {
         params: {
           prompt: "select_account",
